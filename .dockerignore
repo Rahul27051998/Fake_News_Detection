@@ -1,0 +1,10 @@
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.env
+.vscode
+.git
+outputs/models/*
+outputs/features/*
+data/*

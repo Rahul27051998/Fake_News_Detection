@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  fakenews:
+    build: .
+    image: fake-news-detection:latest
+    container_name: fake-news-app
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+      - ./src:/app/src
+    environment:
+      - PYTHONUNBUFFERED=1
+    # if you have NVIDIA container toolkit and want GPU:
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+    command: ["bash", "/app/scripts/entrypoint.sh", "serve"]
